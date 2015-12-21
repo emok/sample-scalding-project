@@ -2,6 +2,7 @@ package application
 
 import cascading.flow.FlowDef
 import com.twitter.scalding._
+import core.util.Util
 
 class WordCount(args : Args) extends Job(args) {
 
@@ -10,7 +11,7 @@ class WordCount(args : Args) extends Job(args) {
   val flow: FlowDef = implicitly[FlowDef]
 
   TypedPipe.from(TextLine(args("input")))
-    .flatMap { line => line.split("""\s+""") }
+    .flatMap { line => Util.tokenize(line) }
     .groupBy { word => word }
     .size
     .write(TypedTsv(args("output")))

@@ -1,0 +1,16 @@
+*.class
+*.log
+
+# sbt specific
+.cache
+.history
+dist/*
+target/
+project/project
+project/target/
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea
